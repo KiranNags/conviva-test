@@ -3,17 +3,17 @@ const CUSTOMER_KEY = 'af65934b0b34dd0b9a740f85f79b4b9d9f013a65';
 const TEST_GATEWAY_URL = 'https://af65934b0b34dd0b9a740f85f79b4b9d9f013a65.ts-testonly.conviva.com';
 
 window.apptracker('convivaAppTracker', {
-  appId: 'KiranWebPlayer',
+  appId: 'KiranStaticSite',
   convivaCustomerKey: CUSTOMER_KEY,
-  appVersion: "1.0.0"
+  appVersion: "v1.0.0"
 });
 
 const viewerId = 'kiran-' + Math.floor(Math.random() * 100000);
 window.apptracker('setUserId', viewerId);
-window.apptracker('trackPageView', { title: "Conviva Web Player Page" });
+window.apptracker('trackPageView', { title: "Conviva Test Static Site" });
 window.apptracker('setCustomTags', {
   environment: 'test',
-  vstGroup: 'TestGroupA',
+  vstGroup: 'StaticWeb',
   userType: 'internal',
   playerVersion: 'v1.0.0'
 });
@@ -21,13 +21,11 @@ window.apptracker('setCustomTags', {
 const videoPlayer = document.getElementById("videoPlayer");
 const hlsSrc = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
-// Trigger fetch so DPI sees request
 fetch(hlsSrc).then(() => {
   if (Hls.isSupported()) {
     const hls = new Hls();
     hls.loadSource(hlsSrc);
     hls.attachMedia(videoPlayer);
-    console.log('[HLS] Attached stream after fetch');
   } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
     videoPlayer.src = hlsSrc;
   }
@@ -62,7 +60,7 @@ contentInfo[Conviva.Constants.VIEWER_ID] = viewerId;
 contentInfo["c3.cm.contentType"] = "Live";
 contentInfo["c3.cm.categoryType"] = "DemoSeries";
 contentInfo["c3.cm.playerVersion"] = "v1.0.0";
-contentInfo["c3.cm.vstGroup"] = "TestGroupA";
+contentInfo["c3.cm.vstGroup"] = "StaticWeb";
 contentInfo["c3.cm.userType"] = "internal";
 
 videoAnalytics.reportPlaybackRequested(contentInfo);

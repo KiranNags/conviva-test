@@ -3,12 +3,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Conviva HLS Player with DPI Network Tracking</title>
-
-  <!-- Conviva Network Collector -->
+  <title>Kiran's Conviva Test Site</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@convivainc/network-collector@latest/dist/networkCollector.min.js"></script>
-
-  <!-- AppTracker Bootstrap -->
   <script type="text/javascript">
     (function(p, i) {
         if (!p[i]) {
@@ -24,18 +21,16 @@
   <script src="convivaAppTracker.js"></script>
 </head>
 <body>
-  <h2>Conviva Player with Forced DPI Network Request</h2>
-
-  <video id="videoPlayer" width="640" height="360" controls></video>
-
-  <!-- HLS.js -->
+  <header>
+    <h1>Welcome to Kiran's Conviva Test Page</h1>
+    <p>This site is instrumented with Conviva ECO + DPI + Video Sensor.</p>
+  </header>
+  <main>
+    <video id="videoPlayer" controls width="640" height="360"></video>
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-  <!-- Conviva SDKs -->
   <script src="conviva-core-sdk.js"></script>
   <script src="conviva-html5native-impl.js"></script>
-
-  <!-- Player -->
   <script src="player.js"></script>
 </body>
 </html>
