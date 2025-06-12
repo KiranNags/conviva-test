@@ -2,7 +2,6 @@
 const CUSTOMER_KEY = 'af65934b0b34dd0b9a740f85f79b4b9d9f013a65';
 const TEST_GATEWAY_URL = 'https://af65934b0b34dd0b9a740f85f79b4b9d9f013a65.ts-testonly.conviva.com';
 
-console.log("[ECO] Initializing AppTracker...");
 window.apptracker('convivaAppTracker', {
   appId: 'KiranWebPlayer',
   convivaCustomerKey: CUSTOMER_KEY,
@@ -18,19 +17,21 @@ window.apptracker('setCustomTags', {
   userType: 'internal',
   playerVersion: 'v1.0.0'
 });
-console.log("[ECO] AppTracker Initialized");
 
 const videoPlayer = document.getElementById("videoPlayer");
 const hlsSrc = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
-if (Hls.isSupported()) {
-  const hls = new Hls();
-  hls.loadSource(hlsSrc);
-  hls.attachMedia(videoPlayer);
-  console.log('[HLS] Loaded and attached HLS stream');
-} else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-  videoPlayer.src = hlsSrc;
-}
+// Trigger fetch so DPI sees request
+fetch(hlsSrc).then(() => {
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(hlsSrc);
+    hls.attachMedia(videoPlayer);
+    console.log('[HLS] Attached stream after fetch');
+  } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+    videoPlayer.src = hlsSrc;
+  }
+});
 
 const settings = {};
 settings[Conviva.Constants.GATEWAY_URL] = TEST_GATEWAY_URL;

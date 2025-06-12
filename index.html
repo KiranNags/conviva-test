@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <title>Conviva HLS Player with DPI Network Tracking</title>
 
-  <!-- Conviva Network Collector (required for DPI network request visibility) -->
+  <!-- Conviva Network Collector -->
   <script src="https://cdn.jsdelivr.net/npm/@convivainc/network-collector@latest/dist/networkCollector.min.js"></script>
 
-  <!-- AppTracker Bootstrapping -->
+  <!-- AppTracker Bootstrap -->
   <script type="text/javascript">
     (function(p, i) {
         if (!p[i]) {
@@ -24,21 +24,18 @@
   <script src="convivaAppTracker.js"></script>
 </head>
 <body>
-  <h2>Conviva HLS Player with DPI Tracking</h2>
+  <h2>Conviva Player with Forced DPI Network Request</h2>
 
-  <video id="videoPlayer" width="640" height="360" controls>
-    <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL">
-    Your browser does not support video playback.
-  </video>
+  <video id="videoPlayer" width="640" height="360" controls></video>
 
-  <!-- HLS.js Library -->
+  <!-- HLS.js -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-  <!-- Conviva Video Sensor SDKs -->
+  <!-- Conviva SDKs -->
   <script src="conviva-core-sdk.js"></script>
   <script src="conviva-html5native-impl.js"></script>
 
-  <!-- Custom Player Logic -->
+  <!-- Player -->
   <script src="player.js"></script>
 </body>
 </html>
